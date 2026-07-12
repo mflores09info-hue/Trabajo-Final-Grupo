@@ -1,15 +1,12 @@
 
-=======
 import os
 
-#REGISTRO DE PERSONAL
 def registrar_personal():
     empLista = []
     
     print("REGISTRO DE PERSONAL - KAMELI SERVICIOS")
     
     while True:
-        # Pregunta si desea ingresar un nuevo empleado
         desea_ingresar = input("¿Deseas ingresar un nuevo empleado (si/no)?: ").strip().lower()
         if desea_ingresar != "si":
             break
@@ -61,8 +58,6 @@ def registrar_personal():
             
     return empLista
 
->>>>>>> 928bb8900aff9f855198adc11f7bafb261ab5412
-<<<<<<< HEAD
 #parte 2
 def calcular_tarifas_y_sueldos(empLista):
     i = 0
@@ -89,10 +84,45 @@ def calcular_tarifas_y_sueldos(empLista):
         if empLista[i]["exImpuesto"] == "si":
             empLista[i]["retencion"] = 0
         else:
-
-        # Cálculo de salFinal
+            empLista[i]["retencion"] = empLista[i]["salBruto"] * 0.08
         empLista[i]["salFinal"] = empLista[i]["salBruto"] - empLista[i]["retencion"]
-        
         i += 1
         
-    return empLista<<<<<<< HEAD
+    return empLista
+#parte 3
+def generar_reporte(empListaProcesada):
+    lineas_reporte = []
+    lineas_reporte.append("      REPORTE DE PLANILLA - KAMELI SERVICIOS ")
+
+    for emp in empListaProcesada:
+        detalle = (
+            f"Empleado: {emp['nomCompleto']}\n"
+            f"Código de Rol: {emp['codRol']} (Tarifa asignada: S/. {emp['tarifa']:.2f}/h)\n"
+            f"Horas Totales:\n"
+            f"  - Lima Normal: {emp['horasLimNorTotal']} | Lima Festiva: {emp['horasLimFesTotal']}\n"
+            f"  - Prov. Normal: {emp['horasProNorTotal']} | Prov. Festiva: {emp['horasProFesTotal']}\n"
+            f"Descuento por Penalización: S/. {emp['penalizacion']:.2f}\n"
+            f"--------------------------------------------------\n"
+            f"Salario Bruto Calculado: S/. {emp['salBruto']:.2f}\n"
+            f"Retención 4ta Categoría: S/. {emp['retencion']:.2f}\n"
+            f"SALARIO FINAL NETO: S/. {emp['salFinal']:.2f}\n"
+        )
+        lineas_reporte.append(detalle)
+
+    reporte_completo = "\n".join(lineas_reporte)
+    print(reporte_completo)
+
+    nombre_archivo = "reporte_pagos_kameli.txt"
+    with open(nombre_archivo, "w", encoding="utf-8") as archivo:
+        archivo.write(reporte_completo)
+        
+    print(f"✅ ¡Éxito! El reporte se guardó en: '{os.path.abspath(nombre_archivo)}'")
+
+if __name__ == "__main__":
+    lista_cruda = registrar_personal()
+    
+    if lista_cruda:
+        lista_calculada = calcular_tarifas_y_sueldos(lista_cruda)
+        generar_reporte(lista_calculada)
+    else:
+        print("No se registraron empleados en el sistema.")

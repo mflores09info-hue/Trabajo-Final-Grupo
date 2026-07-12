@@ -1,0 +1,22 @@
+      REPORTE DE PLANILLA - KAMELI SERVICIOS 
+Empleado: goku
+Código de Rol: 1 (Tarifa asignada: S/. 15.00/h)
+Horas Totales:
+  - Lima Normal: 8.0 | Lima Festiva: 7.0
+  - Prov. Normal: 5.0 | Prov. Festiva: 4.0
+Descuento por Penalización: S/. 20.00
+--------------------------------------------------
+Salario Bruto Calculado: S/. 587.50
+Retención 4ta Categoría: S/. 0.00
+SALARIO FINAL NETO: S/. 587.50
+
+Empleado: lolo
+Código de Rol: 2 (Tarifa asignada: S/. 20.00/h)
+Horas Totales:
+  - Lima Normal: 6.0 | Lima Festiva: 5.0
+  - Prov. Normal: 9.0 | Prov. Festiva: 3.0
+Descuento por Penalización: S/. 330.00
+--------------------------------------------------
+Salario Bruto Calculado: S/. 480.00
+Retención 4ta Categoría: S/. 0.00
+SALARIO FINAL NETO: S/. 480.00
