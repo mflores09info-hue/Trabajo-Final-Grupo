@@ -1,54 +1,61 @@
-# ==========================================
-# TRABAJO FINAL - PROGRAMACIÓN BÁSICA
-# ==========================================
+import os
 
-# --- PARTE 1 (Compañero 1) ---
-def parte_uno_registro():
-    print("--- MÓDULO DE REGISTRO (En desarrollo) ---")
-    # Tu compañero de la Parte 1 programará su lógica aquí dentro
-    pass
-
-
-# --- PARTE 2 (Compañero 2) ---
-def parte_dos_gestion():
-    print("--- MÓDULO DE GESTIÓN (En desarrollo) ---")
-    # Tu compañero de la Parte 2 programará su lógica aquí dentro
-    pass
-
-
-# --- PARTE 3: REPORTE (Tu Parte) ---
-def parte_tres_reporte():
-    print("====================================")
-    print("        REPORTE GENERAL - HU-03      ")
-    print("====================================")
-    # TODO: Aquí empieza a escribir tu código de Python para el reporte
-    print("Generando datos del reporte...")
-
-
-
-# --- MENÚ PRINCIPAL DEL PROYECTO ---
-def menu():
+#REGISTRO DE PERSONAL
+def registrar_personal():
+    empLista = []
+    
+    print("REGISTRO DE PERSONAL - KAMELI SERVICIOS")
+    
     while True:
-        print("\n--- MENÚ DEL TRABAJO FINAL ---")
-        print("1. Ejecutar Parte 1 (Registro)")
-        print("2. Ejecutar Parte 2 (Gestión)")
-        print("3. Ejecutar Parte 3 (Reporte)")
-        print("4. Salir")
-        
-        opcion = input("Seleccione una opción: ")
-        
-        if opcion == "1":
-            parte_uno_registro()
-        elif opcion == "2":
-            parte_dos_gestion()
-        elif opcion == "3":
-            parte_tres_reporte()
-        elif opcion == "4":
-            print("Saliendo del programa...")
+        # Pregunta si desea ingresar un nuevo empleado
+        desea_ingresar = input("¿Deseas ingresar un nuevo empleado (si/no)?: ").strip().lower()
+        if desea_ingresar != "si":
             break
-        else:
-            print("Opción inválida. Intente de nuevo.")
+            
+        nomCompleto = input("Nombre completo del empleado: ").strip()
+        
+        print("")
+        print("Código de Rol:")
+        print("1. Ayudante (S/. 15.00/h)")
+        print("2. Técnico (S/. 20.00/h)")
+        print("3. Supervisor (S/. 25.00/h)")
+        print("4. Supervisor SSOMA (S/. 50.00/h)")
+        
+        while True:
+            try:
+                codRol = int(input("Ingrese el código del rol: "))
+                if codRol in [1, 2, 3, 4]:
+                    break
+                print("ingrese un número del 1 al 4")
+            except ValueError:
+                print("Por favor, ingrese un número entero válido")
+        
+        try:
+            horasLimNorTotal = float(input("Total de horas trabajadas en Lima NO festivas: "))
+            horasLimFesTotal = float(input("Total de horas trabajadas en Lima festivas: "))
+            horasProNorTotal = float(input("Total de horas trabajadas en Provincia NO festivas: "))
+            horasProFesTotal = float(input("Total de horas trabajadas en Provincia festivas: "))
+            
+            exImpuesto = input("¿El empleado cuenta con exoneración de 4ta categoría (si/no)?: ").strip().lower()
+            penalizacion = float(input("Penalización por daños de herramientas (inserte el monto): "))
+        except ValueError:
+            print("ErrorSe reiniciará el registro de este empleado")
+            print("")
+            continue
 
-# Ejecutar el menú al iniciar el archivo
-if __name__ == "__main__":
-    menu()
+        empleado = {
+            "nomCompleto": nomCompleto,
+            "codRol": codRol,
+            "horasLimNorTotal": horasLimNorTotal,
+            "horasLimFesTotal": horasLimFesTotal,
+            "horasProNorTotal": horasProNorTotal,
+            "horasProFesTotal": horasProFesTotal,
+            "exImpuesto": exImpuesto,
+            "penalizacion": penalizacion
+        }
+        
+        empLista.append(empleado)
+        print("Se registo al empleado!\n" + "-"*50)
+            
+    return empLista
+
